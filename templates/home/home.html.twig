@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
     <div class="container">
         <div class="row">
@@ -9,7 +8,9 @@
                         Liste Pizza
                     </div>
                     <div class="col-4">
-                        Panier            
+                        <div class="bg-light">
+                            {% include 'home/panierHome.html.twig' %}
+                        </div>
                     </div>
         </div>
     </div>
