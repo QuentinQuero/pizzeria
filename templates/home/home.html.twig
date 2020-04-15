@@ -4,12 +4,28 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto"><h2>Welcome to the Home page !</h2></div>  
+            <div class="col-lg-8 col-md-10 mx-auto">
+            <br>
+                <h2> Welcome on our website ! </h2>
+                <h3> What would you like for dinner tonight ? </h3>
+                </div>
+                <br>
+                <br>
                     <div class="col-8">
-                        Liste Pizza
+                    {% for pizza in pizzas %}
+
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Au menu</div>
+                            <div class="card-body">
+                                <h4 class="card-title">{{ pizza.name }}</h4>
+                                <img src= "pizzapourmenu.jpg" alt = "Pizza" </img>
+                                <p class="card-text">Price : {{ pizza.price }} $</p>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
                     <div class="col-4">
-                        Panier            
+                        Basket
                     </div>
         </div>
     </div>

@@ -1,3 +1,8 @@
 index:
-   path: /home
+   path: /
    controller: App\Controller\HomeController::index
+
+menu:
+   path: /home
+   controller: App\Controller\HomeController::Menu
+   methods: GET
