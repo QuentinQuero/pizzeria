@@ -1,3 +1,17 @@
 index:
    path: /home
    controller: App\Controller\HomeController::index
+   methods: GET
+indexPost:
+   path: /home
+   controller: App\Controller\HomeController::buttonPressed
+   methods: POST
+
+cart:
+   path: /cart
+   controller: App\Controller\CartController::cart
+   methods: GET
+cartPost:
+   path: /cart
+   controller: App\Controller\CartController::buttonPressed
+   methods: GET

@@ -1,9 +1,11 @@
 {% set totalPrice = 0 %}
-{% set pizzaSelected = 'Panier Vide' %}
+{% set pizzaName = 'Panier Vide' %}
 {% set pizzaPrice = null %}
 
 <div><h5>MA COMMANDE</div>
-<div>{{pizzaSelected }} {{pizzaPrice}}</div>
+{% for pizza in pizzas %}
+<div>{{pizza.pizzaName }} {{pizza.pizzaPrice}}</div>
+{% endfor %}
 <div>Total = {{totalPrice}} €</div>
 <form action="/home" name="sentMessage" id="contactForm" method="post" novalidate>
     <div class="form-group">
