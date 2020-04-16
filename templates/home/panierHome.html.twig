@@ -1,0 +1,14 @@
+{% set totalPrice = 0 %}
+{% set pizzaName = 'Panier Vide' %}
+{% set pizzaPrice = null %}
+
+<div><h5>MA COMMANDE</div>
+{% for pizza in pizzas %}
+<div>{{pizza.pizzaName }} {{pizza.pizzaPrice}}</div>
+{% endfor %}
+<div>Total = {{totalPrice}} €</div>
+<form action="/home" name="sentMessage" id="contactForm" method="post" novalidate>
+    <div class="form-group">
+        <button class="btn btn-secondary" id="validateCart" name ='validateCart'>Valider</button>
+    </div>
+</form>
