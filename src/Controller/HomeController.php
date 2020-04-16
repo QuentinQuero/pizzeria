@@ -18,8 +18,8 @@ class HomeController extends AbstractController
         $response = $client->request('GET', 'http://web.cryfter.ovh:1337/pizzas');
         $pizzas = $response->toArray();
 
-            'pizzas' => $pizzas
-        return $this->render('home/home.html.twig', [
+            // 'pizzas' => $pizzas
+        return $this->render('home/home.html.twig', ['pizzas' => $pizzas
         ]);
    }
 
