@@ -2,17 +2,38 @@
 
 {% block body %}
     <div class="container">
+    <br>
+    <h2> Welcome on our website ! </h2>
+        <h3> What would you like for dinner tonight ? </h3>
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto"><h2>Welcome to the Home page !</h2></div>  
+            <div class="col-lg-8 col-md-10 mx-auto">
+                </div>
+                <br>
                     <div class="col-8">
-                        Liste Pizza
-                        {{pizzas}}
+                    <br>
+                    {% for pizza in pizzas %}
+
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ pizza.name }}</h4>
+                                    <img class= "imagepizza" src= "pizzapourmenu.jpg" alt = "Pizza"
+                                    data-toggle="tooltip" title=" {% for ingredient in pizza.ingredients %} {{ ingredient.name | capitalize}} {% endfor %}"</img>
+                                    <p class="card-text"></p>
+                                <a href = "{{ path('add', {'id': pizza.id}) }}" class="btn-group-vertical">
+                                    <button type="button" class="btn btn-primary">Add for {{ pizza.price}} $ per pizza</button>
+                                </a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
                     </div>
+
                     <div class="col-4">
                         <div class="bg-light">
                             {% include 'home/panierHome.html.twig' %}
                         </div>
                     </div>
+            </div>
         </div>
     </div>
 {% endblock %}
