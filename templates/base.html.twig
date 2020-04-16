@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}PizzaOnWeb{% endblock %}</title>
         <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
+        <script src="events.js"></script>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -20,7 +21,7 @@
                     <a class="nav-link" href="{{ path('menu') }}" >Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Order</a>
+                    <a class="nav-link" href=" {{ path('order') }}">Order</a>
                 </li>
                 </ul>
             </div>
@@ -29,9 +30,11 @@
 
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
-    </body>
+
         <blockquote class="blockquote text-center">
             <p class="mb-0">Honestly, I have never eaten anything so good !</p>
             <footer class="blockquote-footer">A friendly customer <cite title="Source Title"></cite></footer>
         </blockquote>
+
+    </body>
 </html>

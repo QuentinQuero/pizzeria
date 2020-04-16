@@ -10,10 +10,10 @@ class HomeController extends AbstractController
 {
     public function index()
     {
-        return $this->render('home/home.html.twig');
+        return $this->render('home.html.twig');
     }
 
-    public function Menu()
+    public function menu()
     {
         $client = HttpClient::create();
         $response = $client->request('GET', 'http://web.cryfter.ovh:1337/pizzas');
@@ -23,4 +23,5 @@ class HomeController extends AbstractController
             'pizzas' => $pizzas
         ]);
    }
+
 }

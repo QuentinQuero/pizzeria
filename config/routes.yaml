@@ -4,5 +4,13 @@ index:
 
 menu:
    path: /home
-   controller: App\Controller\HomeController::Menu
+   controller: App\Controller\HomeController::menu
    methods: GET
+
+order:
+   path: /order
+   controller: App\Controller\OrderController::index
+
+add:
+   path: /order/{id}
+   controller: App\Controller\OrderController::add
