@@ -21,19 +21,19 @@ class CartController extends AbstractController
     }
     public function cart()
     {
-        $this->session->set('pizzaToCart', ['pizzaToCart' => 
-        [
-            'pizza1' => 
-                ['pizzaName'=>'Royale',
-                'pizzaPrice'=>12,
-                'nbrPizza'=>5,
-                'id' =>1],
-            'pizza2' =>
-                ['pizzaName'=>'BBQ',
-                'pizzaPrice'=>10,
-                'nbrPizza'=>1,
-                'id' =>1]
-        ]]);
+        // $this->session->set('pizzaToCart', ['pizzaToCart' => 
+        // [
+        //     'pizza1' => 
+        //         ['pizzaName'=>'Royale',
+        //         'pizzaPrice'=>12,
+        //         'nbrPizza'=>5,
+        //         'id' =>1],
+        //     'pizza2' =>
+        //         ['pizzaName'=>'BBQ',
+        //         'pizzaPrice'=>10,
+        //         'nbrPizza'=>1,
+        //         'id' =>1]
+        // ]]);
         return $this->render('cart/cart.html.twig', $this->session->get('pizzaToCart'));
         // return new Response(var_dump($this->session->get('pizzaToCart')));
     }

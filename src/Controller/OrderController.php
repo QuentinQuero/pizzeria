@@ -32,22 +32,22 @@ class OrderController extends AbstractController
         ]);
     }
 
-    public function add ($id, SessionInterface $session)
-    {
-        $pizzaToCart = $session->get('pizzaToCart', []);
+    // public function add ($id, SessionInterface $session)
+    // {
+    //     $pizzaToCart = $session->get('pizzaToCart', []);
 
-        if(!empty($pizzaToCart[$id]))
-        {
-            $pizzaToCart[$id] ++;
-        }
-        else
-        {
-            $pizzaToCart[$id] = 1;
-        }
+    //     if(!empty($pizzaToCart[$id]))
+    //     {
+    //         $pizzaToCart[$id] ++;
+    //     }
+    //     else
+    //     {
+    //         $pizzaToCart[$id] = 1;
+    //     }
 
-        $session->set('pizzaToCart', $pizzaToCart);
-        dd($session->get('pizzaToCart'));
-        //return $this->render('home/home.html.twig',
-        //    $session->get('pizzaToCart');
-    }
+    //     $session->set('pizzaToCart', $pizzaToCart);
+    //     dd($session->get('pizzaToCart'));
+    //     //return $this->render('home/home.html.twig',
+    //     //    $session->get('pizzaToCart');
+    // }
 }

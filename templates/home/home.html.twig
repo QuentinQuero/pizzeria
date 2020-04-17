@@ -11,7 +11,7 @@
                 <br>
                     <div class="col-8">
                     <br>
-                    {% for pizza in pizzas %}
+                    {% for pizza in pizzaToCart %}
 
                         <div class="card border-primary mb-3" style="max-width: 20rem;">
                             <div class="card-body">
@@ -30,7 +30,7 @@
 
                     <div class="col-4">
                         <div class="bg-light">
-                            {% include 'home/panierHome.html.twig' %}
+                            Ici c'est le panier {# {% include 'cart/cart.html.twig' %} #}
                         </div>
                     </div>
             </div>

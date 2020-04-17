@@ -27,4 +27,4 @@ order:
 
 add:
    path: /order/{id}
-   controller: App\Controller\OrderController::add
+   controller: App\Controller\HomeController::add
