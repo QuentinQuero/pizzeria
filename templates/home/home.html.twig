@@ -1,49 +1,95 @@
 {% extends 'base.html.twig' %}
+{% set totalPrice = 0 %}
 
 {% block body %}
     <div class="container">
     <br>
     <h2> Welcome on our website ! </h2>
-        <h3> What would you like for dinner tonight ? </h3>
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+    <div class="row row-cols-2">
+        <div class="col">
+        <br>
+        <h3> What would you like for dinner tonight ?</h3>
+        <br>
+            <h4><em>Menu</em></h4>
+            <div class="col">
+            <br>
+            {% for pizza in pizzas %}
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                    <h4 class="card-title">{{ pizza.name }}</h4>
+                        <img class= "imagepizza" src= "pizzapourmenu.jpg" alt = "Pizza"
+                        data-toggle="tooltip" title=" {% for ingredient in pizza.ingredients %} {{ ingredient.name | capitalize}} {% endfor %}"</img>
+                        <p class="card-text">
+                        <a href = "{{ path('add', {'id': pizza.id}) }}" class="btn-group-vertical"> <br>
+                        <button type="button" class="btn btn-primary">Add for {{ pizza.price}} $ per pizza</button>
+                        </a>
+                        </p>
+                    </div>
                 </div>
-                <br>
-                    <div class="col-8">
-                    <br>
-                    {% for pizza in pizzaToCart %}
-
-                        <div class="card border-primary mb-3" style="max-width: 20rem;">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ pizza.name }}</h4>
-                                    <img class= "imagepizza" src= "pizzapourmenu.jpg" alt = "Pizza"
-                                    data-toggle="tooltip" title=" {% for ingredient in pizza.ingredients %} {{ ingredient.name | capitalize}} {% endfor %}"</img>
-                                    <p class="card-text"></p>
-                                <a href = "{{ path('add', {'id': pizza.id}) }}" class="btn-group-vertical">
-                                    <button type="button" class="btn btn-primary">Add for {{ pizza.price}} $ per pizza</button>
-                                </a>
-                            </div>
-                        </div>
-
-                    {% endfor %}
-                    </div>
-
-                    <div class="col-4">
-                        <div class="bg-light">
-
-                            <h4>Order's summary</h4>
-
-                            <div>Bill : X $</div>
-
-                            <form action="/home" name="sentMessage" id="contactForm" method="post" novalidate>
-                                <div class="form-group">
-                                    <button class="btn btn-secondary" id="validateCart" name ='validateCart'>Order</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
+            {% endfor %}
             </div>
         </div>
+
+        <div class="col">
+        <br>
+        <br>
+        <br>
+        <br>
+            <h4><em>Order's summary</em></h4>
+            <div class="col">
+            <br>
+                {% if order is not empty %}
+                <div class="card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><h4>For the moment, you have chosen...</h4><br>
+                    <svg class="bi bi-bucket-fill" color ="darkorange" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 1.5A4.5 4.5 0 003.5 6h-1a5.5 5.5 0 1111 0h-1A4.5 4.5 0 008 1.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M1.61 5.687A.5.5 0 012 5.5h12a.5.5 0 01.488.608l-1.826 8.217a1.5 1.5 0 01-1.464 1.175H4.802a1.5 1.5 0 01-1.464-1.175L1.512 6.108a.5.5 0 01.098-.42z" clip-rule="evenodd"/>
+                    </svg><br><br></div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                {% for element in order %}
+                                <br>
+                                    <form action="/cart" name="sentMessage" method="post" novalidate>
+                                    <input type="text" id="element.quantity" name="element.quantity" value ={{ element.quantity }} style='width:20px; text-align:center;'>
+                                    {% set pizzaPrice = element.pizza.price * element.quantity %}
+                                    {{ element.pizza.name }} ({{ element.pizza.price }}$ each) &nbsp; = &nbsp; {{ pizzaPrice }}$
+                                    {% set totalPrice = totalPrice + pizzaPrice %}
+                                    </form>
+                                {% endfor %}
+                                </p><br>
+                            {% else %}
+                            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-header"><h4>You're bucket is empty...</h4><br>
+                            <svg class="bi bi-bucket" color ="darkorange" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 1.5A4.5 4.5 0 003.5 6h-1a5.5 5.5 0 1111 0h-1A4.5 4.5 0 008 1.5z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M1.61 5.687A.5.5 0 012 5.5h12a.5.5 0 01.488.608l-1.826 8.217a1.5 1.5 0 01-1.464 1.175H4.802a1.5 1.5 0 01-1.464-1.175L1.512 6.108a.5.5 0 01.098-.42zm1.013.813l1.691 7.608a.5.5 0 00.488.392h6.396a.5.5 0 00.488-.392l1.69-7.608H2.624z" clip-rule="evenodd"/>
+                            </svg><br><br></div>
+                                <div class="card-body">
+                            <p class="card-text">
+                            <p><strong>It's time to choose !</strong></p><br>
+                            <p class="float-right">
+                            <svg class="bi bi-alarm" width="4em" height="4em" color ="darkorange" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 15A6 6 0 108 3a6 6 0 000 12zm0 1A7 7 0 108 2a7 7 0 000 14z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M8 4.5a.5.5 0 01.5.5v4a.5.5 0 01-.053.224l-1.5 3a.5.5 0 11-.894-.448L7.5 8.882V5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                                <path d="M.86 5.387A2.5 2.5 0 114.387 1.86 8.035 8.035 0 00.86 5.387zM11.613 1.86a2.5 2.5 0 113.527 3.527 8.035 8.035 0 00-3.527-3.527z"/>
+                                <path fill-rule="evenodd" d="M11.646 14.146a.5.5 0 01.708 0l1 1a.5.5 0 01-.708.708l-1-1a.5.5 0 010-.708zm-7.292 0a.5.5 0 00-.708 0l-1 1a.5.5 0 00.708.708l1-1a.5.5 0 000-.708zM5.5.5A.5.5 0 016 0h4a.5.5 0 010 1H6a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                                <path d="M7 1h2v2H7V1z"/>
+                            </svg>
+                            </p>
+                            {% endif %}
+                            <div style = "text-align:right">
+                            {% if order is not empty %}
+                            Bill : {{ totalPrice }}$
+                            </div><br>
+                            <div>
+                            <a href="#" class="card-link"><strong>Order</strong></a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <br><br>
+    </div>
     </div>
 {% endblock %}

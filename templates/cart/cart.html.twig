@@ -4,17 +4,17 @@
 {% set pizzaPrice = null %}
 
 {% block body %}
-          
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto"><h2>Récapitulatif de votre commande !</h2> 
+            <div class="col-lg-8 col-md-10 mx-auto"><h2>Récapitulatif de votre commande !</h2>
                 <div class="bg-light">
                     <div><h5>MA COMMANDE</div>
 
                         {% for pizza in pizzaToCart %}
-                            <div class="col-lg-10 col-md-12 mx-auto"> 
+                            <div class="col-lg-10 col-md-12 mx-auto">
                                 <form action="/cart" name="sentMessage" method="post" novalidate>
-                                    <input type="text" id="nbrPizza.{{pizza.id}}" name="nbrPizza.{{pizza.id}}" value ={{pizza.nbrPizza}} style='width:5%; text-align:center;'> x                                
+                                    <input type="text" id="nbrPizza.{{pizza.id}}" name="nbrPizza.{{pizza.id}}" value ={{pizza.nbrPizza}} style='width:5%; text-align:center;'> x
                             </div>
                             {% set pizzaPrice = pizza.pizzaPrice * pizza.nbrPizza %}
                             <div class="col-lg-8 col-md-10 mx-auto">{{pizza.pizzaName }} {{pizzaPrice}} €</div>
@@ -30,7 +30,7 @@
                         </form>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 {% endblock %}
