@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
@@ -18,7 +19,6 @@ class HomeController extends AbstractController
         $response = $client->request('GET', 'http://web.cryfter.ovh:1337/pizzas');
         $pizzas = $response->toArray();
 
-            // 'pizzas' => $pizzas
         return $this->render('home/home.html.twig', ['pizzas' => $pizzas
         ]);
    }
@@ -33,5 +33,23 @@ class HomeController extends AbstractController
     public function validateCart()
     {
         
+    }
+    public function add ($id, SessionInterface $session)
+    {
+        $pizzaToCart = $session->get('pizzaToCart', []);
+
+        if(!empty($pizzaToCart[$id]))
+        {
+            $pizzaToCart[$id] ++;
+        }
+        else
+        {
+            $pizzaToCart[$id] = 1;
+        }
+
+        $session->set('pizzaToCart', $pizzaToCart);
+        dd($session->get('pizzaToCart'));
+        //return $this->render('home/home.html.twig',
+        //    $session->get('pizzaToCart');
     }
 }
