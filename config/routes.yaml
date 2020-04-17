@@ -1,3 +1,30 @@
 index:
-   path: /home
+   path: /
    controller: App\Controller\HomeController::index
+   methods: GET
+indexPost:
+   path: /home
+   controller: App\Controller\HomeController::buttonPressed
+   methods: POST
+
+cart:
+   path: /cart
+   controller: App\Controller\CartController::cart
+   methods: GET
+cartPost:
+   path: /cart
+   controller: App\Controller\CartController::buttonPressed
+   methods: GET
+
+menu:
+   path: /home
+   controller: App\Controller\HomeController::menu
+   methods: GET
+
+order:
+   path: /order
+   controller: App\Controller\OrderController::index
+
+add:
+   path: /order/{id}
+   controller: App\Controller\OrderController::add
