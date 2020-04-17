@@ -30,7 +30,17 @@
 
                     <div class="col-4">
                         <div class="bg-light">
-                            {% include 'home/panierHome.html.twig' %}
+
+                            <h4>Order's summary</h4>
+
+                            <div>Bill : X $</div>
+
+                            <form action="/home" name="sentMessage" id="contactForm" method="post" novalidate>
+                                <div class="form-group">
+                                    <button class="btn btn-secondary" id="validateCart" name ='validateCart'>Order</button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
             </div>
