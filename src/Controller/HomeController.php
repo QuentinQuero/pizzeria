@@ -47,7 +47,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-   public function add ($id, SessionInterface $session)
+   public function add($id, SessionInterface $session)
     {
         $pizzaToCart = $session->get('pizzaToCart', []);
 
